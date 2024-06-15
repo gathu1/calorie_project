@@ -1,13 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import FoodItem
-from django.utils import timezone
 from .forms import FoodItemForm
 def index(request):
     items = FoodItem.objects.all()
-    total_calories = sum(item.calories for item in items)
-    return render(request, 'index.html', {'items': items, 'total_calories': total_calories})
-def home(request):
-    items = FoodItem.objects.filter()
     total_calories = sum(item.calories for item in items)
     return render(request, 'index.html', {'items': items, 'total_calories': total_calories})
 def food(request):
@@ -23,10 +18,10 @@ def food(request):
 def delete_food_item(request, item_id):
     item = FoodItem.objects.get(id=item_id)
     item.delete()
-    return redirect(request, 'index')
+    return redirect( 'index')
 def reset_calories(request):
     FoodItem.objects.filter().delete()
-    return redirect(request, 'index')
+    return redirect( 'index')
 
 
 
