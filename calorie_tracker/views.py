@@ -7,8 +7,7 @@ def index(request):
     total_calories = sum(item.calories for item in items)
     return render(request, 'index.html', {'items': items, 'total_calories': total_calories})
 def home(request):
-    today = timezone.now().date()
-    items = FoodItem.objects.filter(added_at__date=today)
+    items = FoodItem.objects.filter()
     total_calories = sum(item.calories for item in items)
     return render(request, 'index.html', {'items': items, 'total_calories': total_calories})
 def food(request):
@@ -26,8 +25,7 @@ def delete_food_item(request, item_id):
     item.delete()
     return redirect(request, 'index')
 def reset_calories(request):
-    today = timezone.now().date()
-    FoodItem.objects.filter(added_at__date=today).delete()
+    FoodItem.objects.filter().delete()
     return redirect(request, 'index')
 
 
