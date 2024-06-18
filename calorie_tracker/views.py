@@ -18,10 +18,10 @@ def food(request):
 def delete_food_item(request, item_id):
     item = FoodItem.objects.get(id=item_id)
     item.delete()
-    return redirect( 'index')
+    return redirect('index')
 def reset_calories(request):
     FoodItem.objects.filter().delete()
-    return redirect( 'index')
+    return redirect('index')
 
 
 
